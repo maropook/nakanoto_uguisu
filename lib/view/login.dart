@@ -61,6 +61,9 @@ class LoginPage extends ConsumerWidget {
                               email: email,
                               password: password,
                             );
+                            if (FirebaseAuth.instance.currentUser == null) {
+                              return;
+                            }
                             ref.read(loginProvider.notifier).changeUser(
                                 FirebaseAuth.instance.currentUser!.email!);
                           } catch (e) {

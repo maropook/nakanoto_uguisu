@@ -121,6 +121,9 @@ class SavePage extends ConsumerWidget {
         .updatePoint(point.copyWith(point: updatedPoint));
 
     final date = DateTime.now().toLocal().toIso8601String();
+    if (FirebaseAuth.instance.currentUser == null) {
+      return;
+    }
     await FirebaseFirestore.instance
         .collection('save')
         .doc(FirebaseAuth.instance.currentUser!.email!)
